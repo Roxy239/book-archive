@@ -10,10 +10,7 @@ const searchbook = () => {
 
     fetch(url)
         .then(res => res.json())
-        .then(data => displaySearchResult(data.docs));
-
-
-
+        .then(data => displaySearchResult(data.numFound, data.docs));
 
 
 }
@@ -23,16 +20,17 @@ const searchbook = () => {
 
 
 
-const displaySearchResult = docs => {
+const displaySearchResult = (searchCount, docs) => {
+
     //total search results
-    //console.log(docs.length);
+    console.log(searchCount);
 
-    // const searchResultsNumberdiv = document.getElementById('searchresult-number');
-    // const searchResultnumber = document.createElement('div')
-    // searchResultnumber.innerHTML = `<h2>Total Result found: ${docs.length} </h2>`;
-    // searchResultsNumberdiv.appendChild(searchResultnumber);
+    const searchResultsNumberdiv = document.getElementById('searchresult-number');
+    const searchResultnumber = document.createElement('div');
 
-
+    searchResultsNumberdiv.innerHTML = ''; //null of total result number
+    searchResultnumber.innerHTML = `<h2>Total Result found: ${searchCount} </h2>`;
+    searchResultsNumberdiv.appendChild(searchResultnumber);
 
     const searchResults = document.getElementById('search-result');
     searchResults.textContent = '';
